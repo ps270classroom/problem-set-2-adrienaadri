@@ -80,7 +80,7 @@ In the writeup, describe which type of candidate sponsored the most promoting ad
  **Rubric**: 3pts for creating `party_incumbent_promote` correctly (autograder); 2pt for a nicely formatted table (PDF); 1pt for changing the column names of the output table (PDF); 1pt for correctly identifying the type of candidate with highest average (PDF)
 
 ## Answer 2
-```{r eval = FALSE}
+```{r}
 party_incumbent_promote <- fb_ads |>
   filter(office == "US House" |
          office == "US Senate") |>
@@ -89,6 +89,7 @@ party_incumbent_promote <- fb_ads |>
   arrange(desc(promote_prop))
 
 knitr::kable(party_incumbent_promote, col.names = c("Party", "Incumbency", "Average Promoting Ads "), digits = 3)
+
 ```
 
 \newpage
