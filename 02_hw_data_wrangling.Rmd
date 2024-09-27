@@ -82,8 +82,7 @@ In the writeup, describe which type of candidate sponsored the most promoting ad
 ## Answer 2
 ```{r}
 party_incumbent_promote <- fb_ads |>
-  filter(office == "US House" |
-         office == "US Senate") |>
+  filter(office %in% c("US House", "US Senate")) |>
   group_by(party, incumbency) |>
   summarize(promote_prop = mean(ad_tone_promote, na.rm = TRUE)) |>
   arrange(desc(promote_prop))
@@ -143,8 +142,10 @@ You do not need to exactly match the labels, but you should have informative lab
 fb_top_plot <- fb_ads |>
   filter(office =="US House") |>
   slice_max(impressions_millions, n = 15) |>
+  arrange(impressions_millions) |>
+  mutate(cand_name_last = factor(cand_name_last, levels = cand_name_last)) |>
   ggplot(aes(x = impressions_millions,
-             y = reorder(cand_name_last, impressions_millions))) +
+             y = cand_name_last)) +
   geom_bar(stat = "identity", aes(fill = party)) +
   labs(
     title = "Top 15 House Candidates Facebook Ad Impressions",
