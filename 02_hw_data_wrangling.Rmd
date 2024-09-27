@@ -48,7 +48,7 @@ Use `dplyr` functions to create a table with the number of candidates in each ty
 
 ## Answer 1
 ```{r}
-fb_ads <- read_csv("/Users/ellis/OneDrive/Documents/problem-set-2-adrienaadri/data/fb_ads.csv")
+fb_ads <- read_csv("data/fb_ads.csv")
 fb_ads
 ```
 There are 7014 candidates in the dataset.
