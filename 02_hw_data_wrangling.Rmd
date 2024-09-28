@@ -142,10 +142,8 @@ You do not need to exactly match the labels, but you should have informative lab
 fb_top_plot <- fb_ads |>
   filter(office =="US House") |>
   slice_max(impressions_millions, n = 15) |>
-  arrange(impressions_millions) |>
-  mutate(cand_name_last = factor(cand_name_last, levels = cand_name_last)) |>
   ggplot(aes(x = impressions_millions,
-             y = cand_name_last)) +
+             y = reorder(cand_name_last, impressions_millions))) +
   geom_bar(stat = "identity", aes(fill = party)) +
   labs(
     title = "Top 15 House Candidates Facebook Ad Impressions",
